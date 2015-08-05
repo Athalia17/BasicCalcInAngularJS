@@ -1,0 +1,57 @@
+<html ng-app>
+<script>
+    function Calculator($scope) {    
+    $scope.operators = ['+', '-', '*', '/'];
+    $scope.selectedOperator = $scope.operators[0];
+    
+    $scope.calculate = function() {
+        var A = parseInt($scope.firstNumber);
+        var B = parseInt($scope.secondNumber);
+        var C = 0;
+    
+        switch ($scope.selectedOperator) {
+            case '':
+            case '+':
+                C = A + B;
+                break;
+            case '-':
+                C = A - B;
+                break;
+            case '*':
+                C = A * B;
+                break;
+            case '/':
+                C = A / B;
+                break;                
+        }
+        
+        $scope.result = C;
+    };
+}
+</script>
+    <head>
+        <title>AngularJS Calculator</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js">
+        </script>
+    <head>
+    <body>
+            <center>
+        <div ng-controller="Calculator">
+          {{firstNumber}} {{selectedOperator}} {{secondNumber}} = {{result}}<br>
+            <label>Enter 1st Number:</label>
+            <input ng-model="firstNumber" type="text"> 
+            
+           Operator:
+            <select ng-model="selectedOperator" 
+                    ng-options="operator for operator in operators"></select> 
+            
+            <label>Enter 2nd Number:</label>
+            <input ng-model="secondNumber" type="text"> <br/>
+            
+            <button ng-click="calculate()">Calculate</button> <br/>
+          
+            Result: {{result}}
+        </div>
+
+    </body>
+</html>
